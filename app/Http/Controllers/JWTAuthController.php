@@ -11,7 +11,6 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class JWTAuthController extends Controller
 {
-    // User registration
     public function register(Request $request)
     {
 
@@ -40,6 +39,7 @@ class JWTAuthController extends Controller
     
     public function login(Request $request)
     {
+        
         $credentials = $request->only('email', 'password');
 
         try {
@@ -53,7 +53,9 @@ class JWTAuthController extends Controller
             // (optional) Attach the role to the token.
             $token = JWTAuth::claims(['role' => $user->role])->fromUser($user);
 
-            return response()->json(compact('token'));
+            $cookie = cookie('jwt-token', $token, 60 * 24);  
+
+            return redirect()->route('index')->with('user', $user)->cookie($cookie);
         } catch (JWTException $e) {
             return response()->json(['error' => 'Could not create token'], 500);
         }
