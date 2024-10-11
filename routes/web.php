@@ -18,7 +18,10 @@ Route::post('login', [JWTAuthController::class, 'login'])->name('login-user');
 //Rotte per gli utenti autenticati tramite jwt-token
 Route::middleware([JwtMiddleware::class])->group(function(){
     Route::get('/home', [IndexController::class, 'index'])->name('index');
+    Route::get('/breweries', [BreweryController::class, 'listBreweries']);
 });
+
+
     
     
     
