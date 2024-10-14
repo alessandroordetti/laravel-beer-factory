@@ -17,7 +17,11 @@ class BreweryService
     public function getBreweries()
     {
         return Cache::remember('breweries', 60, function () {
-            $response = $this->client->get('https://api.openbrewerydb.org/v1/breweries');
+            $response = $this->client->get('https://ih-beers-api2.herokuapp.com/beers');
+
+            $jsonBeers = json_decode($response->getBody(), true);
+
+            dd($jsonBeers);
 
             // Decodifica e restituisce la risposta JSON
             return json_decode($response->getBody(), true);

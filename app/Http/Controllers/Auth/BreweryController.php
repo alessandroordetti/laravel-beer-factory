@@ -20,31 +20,12 @@ class BreweryController extends Controller
 
     public function index(Request $request)
     {
-    // Recupera le birrerie dal service
-    $breweries = $this->breweryService->getBreweries();
+        $json = file_get_contents(public_path('breweries.json'));
 
-    // Converte i risultati in una Collection
-    $breweriesCollection = collect($breweries);
+        // Decodifica il JSON in un array PHP
+        $breweries = json_decode($json, true);
 
-    // Numero di elementi per pagina
-    $perPage = 9;
-
-    // Recupera la pagina corrente (di default è la pagina 1)
-    $currentPage = LengthAwarePaginator::resolveCurrentPage();
-
-    // Segmenta la Collection in base alla pagina corrente
-    $currentPageItems = $breweriesCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
-
-    // Crea un oggetto LengthAwarePaginator
-    $paginatedItems = new LengthAwarePaginator(
-        $currentPageItems, // Gli elementi per la pagina corrente
-        $breweriesCollection->count(), // Il numero totale di elementi nella Collection
-        $perPage, // Il numero di elementi per pagina
-        $currentPage, // La pagina corrente
-        ['path' => $request->url(), 'query' => $request->query()] // Per mantenere l'URL e i parametri query
-    );
-
-    // Passa i dati alla vista
-    return view('breweries.index', ['breweriesCollection' => $paginatedItems]);
+        // Passa i dati alla vista
+        return view('breweries.index', ['breweries' => $breweries]);
     }
 }

@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Elenco delle Birrerie</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
+
 <body style="background-color: orange" class="h-screen">
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <h1>Elenco delle Birrerie</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        @foreach ($breweries as $b)
+            <div class="rounded overflow-hidden shadow-lg w-1/2">
+                <div>
+                    <img src="{{asset('images/rand-beers/rand-beer' . rand(1,3) . '.png')}}" 
+                    alt="Sunset in the mountains" 
+                    class="w-auto text-center mx-auto" 
+                    style="height: 200px;"
+                    >
+                </div>
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">{{$b['name']}}</div>
+                    <p class="text-gray-700 text-base">
+                        From: {{$b['city']}} - {{$b['state']}}
+                    </p>
+                    <a href="{{$b['website_url']}}" class="text-sky-800	"><u>More</u></a>
+                </div>
 
-        @if($breweriesCollection->count() > 0)
-            <ul>
-                @foreach($breweriesCollection as $brewery)
-                    <li>
-                        <strong>Name:</strong> {{ $brewery['name'] }}<br>
-                        <strong>Città:</strong> {{ $brewery['city'] }}<br>
-                        <strong>Stato:</strong> {{ $brewery['state'] }}
-                    </li>
-                @endforeach
-            </ul>
-    
-            <!-- Link di paginazione -->
-            <div>
-                {{ $breweriesCollection->links('pagination::custom-pagination') }}
             </div>
-        @else
-            <p>Nessuna birreria disponibile.</p>
-        @endif
-    </div>
-
-</body>
+        @endforeach
 </html>
