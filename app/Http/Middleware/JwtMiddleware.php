@@ -22,7 +22,7 @@ class JwtMiddleware
             $token = $request->cookie('jwt-token');
 
             if (!$token) {
-                return redirect()->route('register-page')->with('noToken', 'Registrati per continuare');
+                return redirect()->route('login-page')->with('expiredToken', 'Please, register or log in again to proceed.');
             }
 
             JWTAuth::setToken($token);
@@ -33,7 +33,7 @@ class JwtMiddleware
             }
 
         } catch (Exception $e) {
-            return response()->json(['message' => 'Token non valido o scaduto.'], 401);
+            return redirect()->route('register-page')->with('expiredToken', 'Please, register or log in again to proceed.');
         }
 
 

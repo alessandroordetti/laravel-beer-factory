@@ -19,7 +19,7 @@ Route::post('login', [JWTAuthController::class, 'login'])->name('login-user');
 Route::middleware([JwtMiddleware::class])->group(function(){
     Route::get('/home', [IndexController::class, 'index'])->name('index');
     Route::get('/all-breweries', [BreweryController::class, 'index'])->name('breweries-index');
-    Route::get('/breweries', [BreweryController::class, 'listBreweries']);
+    Route::get('/brewery-details/{id}', [BreweryController::class, 'show']);
 });
 
 

@@ -48,9 +48,9 @@
                         class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>
                 </div>
 
-                @if(session('noToken'))
-                    <h2 class="text-2xl text-white underline-offset-2"><u>{{session('noToken')}}</u></h2>
-                    <img src="{{asset('images/register-beer.png')}}" alt="">
+                @if(session('expiredToken'))
+                    <h2 class="text-2xl text-white underline-offset-2"><u>{{session('expiredToken')}}</u></h2>
+                    <!-- <img src="{{asset('images/register-beer.png')}}" alt=""> -->
                 @endif
 
 

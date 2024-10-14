@@ -18,7 +18,7 @@ class BreweryController extends Controller
         $this->breweryService = $breweryService;
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $json = file_get_contents(public_path('breweries.json'));
 
@@ -27,5 +27,24 @@ class BreweryController extends Controller
 
         // Passa i dati alla vista
         return view('breweries.index', ['breweries' => $breweries]);
+    }
+
+    public function show($id)
+    {
+        $json = file_get_contents(public_path('breweries.json'));
+
+        $breweries = json_decode($json, true);
+
+        $brewery = array_filter($breweries, function($brewery) use ($id) {
+            return $brewery['id'] == $id;
+        });
+
+        $brewery = !empty($brewery) ? array_shift($brewery) : null;
+
+        if ($brewery) {
+            return view('breweries.show', ['brewery' => $brewery]);
+        } else {
+            return response()->json(['message' => 'Birrificio non trovato.'], 404);
+        }
     }
 }
