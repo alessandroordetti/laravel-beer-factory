@@ -55,7 +55,7 @@ class JWTAuthController extends Controller
 
             $cookie = cookie('jwt-token', $token, 60 * 24);  
 
-            return redirect()->route('index')->with('user', $user)->cookie($cookie);
+            return redirect()->route('breweries-index')->with('user', $user)->cookie($cookie);
         } catch (JWTException $e) {
             return response()->json(['error' => 'Could not create token'], 500);
         }

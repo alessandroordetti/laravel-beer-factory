@@ -9,8 +9,10 @@
 
 <body style="background-color: orange" class="h-screen">
     <div class="p-6 w-2/3 mx-auto">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <h1 class="text-8xl	mb-8">List of beers</h1>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="height: 500px; overflow-y: hidden;">
+            
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-16 py-3">
