@@ -46,11 +46,8 @@ class JWTAuthController extends Controller
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'Invalid credentials'], 401);
             }
-
-            // Get the authenticated user.
             $user = auth()->user();
 
-            // (optional) Attach the role to the token.
             $token = JWTAuth::claims(['role' => $user->role])->fromUser($user);
 
             $cookie = cookie('jwt-token', $token, 60 * 24);  

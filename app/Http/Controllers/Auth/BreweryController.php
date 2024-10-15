@@ -22,10 +22,8 @@ class BreweryController extends Controller
     {
         $json = file_get_contents(public_path('breweries.json'));
 
-        // Decodifica il JSON in un array PHP
         $breweries = json_decode($json, true);
 
-        // Passa i dati alla vista
         return view('breweries.index', ['breweries' => $breweries]);
     }
 
