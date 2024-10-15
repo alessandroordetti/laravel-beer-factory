@@ -77,6 +77,6 @@ class JWTAuthController extends Controller
     {
         JWTAuth::invalidate(JWTAuth::getToken());
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return redirect()->route('login-page')->with(['logout' => 'Successfully logged out']);
     }
 }

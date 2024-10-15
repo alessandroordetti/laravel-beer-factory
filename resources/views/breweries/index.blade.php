@@ -9,9 +9,15 @@
 
 <body style="background-color: orange" class="h-screen">
     <div class="p-6 w-2/3 mx-auto">
+        <div class="flex justify-end">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black	 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Logout</button>
+            </form>
+        </div>
         <h1 class="text-8xl	mb-8">List of beers</h1>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="height: 500px; overflow-y: hidden;">
-            
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="height: 500px; overflow-y: auto;">
+
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -22,10 +28,10 @@
                             Name
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Qty
+                            Type
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Price
+                            Country
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -50,7 +56,8 @@
                                 {{$b['country']}}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="/brewery-details/{{$b['id']}}" class="font-medium text-red-600 dark:text-red-500 hover:underline">Details</a>
+                                <a href="/brewery-details/{{$b['id']}}"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Details</a>
                             </td>
                         </tr>
                     @endforeach

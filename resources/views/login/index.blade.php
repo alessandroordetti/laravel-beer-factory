@@ -10,6 +10,9 @@
 
 <body style="background-color: orange">
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="container mx-auto">
+            <a href="/" class="rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black	 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>
+        </div>
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <img class="mx-auto h-10 w-auto" src="{{asset('images/blue-beer.png')}}" style="height: 200px;"
                 alt="Your Company">
@@ -51,16 +54,14 @@
                 @if(session('expiredToken'))
                     <h2 class="text-2xl text-white underline-offset-2"><u>{{session('expiredToken')}}</u></h2>
                     <!-- <img src="{{asset('images/register-beer.png')}}" alt=""> -->
+                @elseif(session('logout'))
+                    <h2 class="text-2xl text-white underline-offset-2"><u>{{session('logout')}}</u></h2>
                 @endif
-
-
             </form>
         </div>
     </div>
 
-    <div class="container mx-auto">
-        <a href="/" class="rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black	 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>
-    </div>
+    
 </body>
 
 </html>
